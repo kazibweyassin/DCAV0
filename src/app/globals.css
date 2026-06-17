@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 6% 4%;
+    --foreground: 0 0% 98%;
+    --card: 240 5% 7%;
+    --card-foreground: 0 0% 98%;
+    --primary: 160 94% 24%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4% 12%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 4% 14%;
+    --muted-foreground: 240 5% 58%;
+    --accent: 43 42% 58%;
+    --accent-foreground: 240 6% 4%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
+    --ring: 160 94% 24%;
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    @apply bg-obsidian text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .glass-nav {
+    @apply bg-obsidian/70 backdrop-blur-xl border-b border-white/[0.06];
+  }
+
+  .premium-border {
+    @apply border border-champagne/20;
+  }
+
+  .institutional-grid {
+    background-image:
+      linear-gradient(rgba(201, 169, 98, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201, 169, 98, 0.03) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+}
