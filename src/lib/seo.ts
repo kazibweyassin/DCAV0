@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CONTACT } from "@/lib/data/contact";
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://diamondcapitalafrica.com";
@@ -36,14 +37,17 @@ export const ORGANIZATION = {
   legalName: "Diamond Capital Africa Ltd",
   url: SITE_URL,
   logo: `${SITE_URL}/Logo.png`,
-  email: "investors@diamondcapitalafrica.com",
+  email: CONTACT.email,
+  telephone: [CONTACT.phones.mobile.href.replace("tel:", ""), CONTACT.phones.office.href.replace("tel:", "")],
   address: {
-    addressLocality: "Kampala",
+    streetAddress: `${CONTACT.address.building}, ${CONTACT.address.floor}, ${CONTACT.address.street}`,
+    addressLocality: CONTACT.address.city,
+    addressRegion: CONTACT.address.area,
     addressCountry: "UG",
-    addressRegion: "Central Region",
+    postalCode: "",
   },
   areaServed: ["Uganda", "East Africa", "Africa"],
-  foundingLocation: "Kampala, Uganda",
+  foundingLocation: "Nakasero, Kampala, Uganda",
 } as const;
 
 interface PageMetadataOptions {

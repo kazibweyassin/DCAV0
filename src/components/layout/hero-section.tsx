@@ -49,7 +49,7 @@ export function HeroSection({
               variant="gold"
               className="mb-6 px-4 py-1.5 text-xs uppercase tracking-widest"
             >
-              Kampala · Uganda · East Africa
+              Nakasero · Kampala · Uganda
             </Badge>
 
             <h1 className="font-display text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl text-balance">

@@ -42,7 +42,7 @@ export function AboutSection() {
               <span className="text-emerald-light">Not General Investments.</span>
             </h2>
             <p className="mt-6 text-base leading-relaxed text-white/50 sm:text-lg">
-              Headquartered in Kampala, DCA is an institutional investment
+              Headquartered at Workers House in Nakasero, Kampala, DCA is an institutional investment
               management firm purpose-built to channel international foreign
               capital into Uganda&apos;s highest-yield hard-asset industries. We
               are not a generalist fund. We are a sovereign-aligned gateway for

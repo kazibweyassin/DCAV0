@@ -11,10 +11,12 @@ export function organizationSchema() {
     logo: ORGANIZATION.logo,
     image: ORGANIZATION.logo,
     email: ORGANIZATION.email,
+    telephone: ORGANIZATION.telephone,
     description:
       "Institutional investment management firm channeling foreign capital into Uganda's agro-processing, mineral refining, and industrial logistics sectors.",
     address: {
       "@type": "PostalAddress",
+      streetAddress: ORGANIZATION.address.streetAddress,
       addressLocality: ORGANIZATION.address.addressLocality,
       addressCountry: ORGANIZATION.address.addressCountry,
       addressRegion: ORGANIZATION.address.addressRegion,
