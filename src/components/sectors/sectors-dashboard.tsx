@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { SectorCard } from "@/components/sectors/sector-card";
+import { ScrollReveal } from "@/components/motion/scroll-reveal";
 import { SECTORS } from "@/lib/data/sectors";
 import { SITE_IMAGES } from "@/lib/data/images";
 import type { SectorId } from "@/types/investment";
@@ -14,7 +15,7 @@ export function SectorsDashboard({ onRequestBrief }: SectorsDashboardProps) {
   return (
     <section id="sectors" className="relative py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
+        <ScrollReveal className="mx-auto max-w-3xl text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-light">
             Investable Sectors
           </p>
@@ -27,9 +28,9 @@ export function SectorsDashboard({ onRequestBrief }: SectorsDashboardProps) {
             into tangible, income-generating infrastructure, each vetted under
             UIA incentive frameworks and OECD due diligence protocols.
           </p>
-        </div>
+        </ScrollReveal>
 
-        <div className="relative mt-12 overflow-hidden rounded-2xl border border-white/[0.06]">
+        <ScrollReveal className="relative mt-12 overflow-hidden rounded-2xl border border-white/[0.06]" delay={0.1}>
           <div className="relative h-56 sm:h-64">
             <Image
               src={SITE_IMAGES.sectorsBanner}
@@ -46,13 +47,14 @@ export function SectorsDashboard({ onRequestBrief }: SectorsDashboardProps) {
               </p>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
 
         <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-3">
-          {SECTORS.map((sector) => (
+          {SECTORS.map((sector, index) => (
             <SectorCard
               key={sector.id}
               sector={sector}
+              index={index}
               onRequestBrief={(id) => onRequestBrief(id)}
             />
           ))}

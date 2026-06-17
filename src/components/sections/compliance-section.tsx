@@ -1,7 +1,10 @@
-import Image from "next/image";
-import { FileCheck, Scale, Landmark, Globe2 } from "lucide-react";
-import { SITE_IMAGES } from "@/lib/data/images";
+"use client";
 
+import Image from "next/image";
+import { motion, useReducedMotion } from "motion/react";
+import { FileCheck, Scale, Landmark, Globe2 } from "lucide-react";
+import { ScrollReveal } from "@/components/motion/scroll-reveal";
+import { SITE_IMAGES } from "@/lib/data/images";
 const COMPLIANCE_PILLARS = [
   {
     icon: Landmark,
@@ -30,11 +33,14 @@ const COMPLIANCE_PILLARS = [
 ] as const;
 
 export function ComplianceSection() {
+  const prefersReducedMotion = useReducedMotion();
+  const PillarMotion = prefersReducedMotion ? "div" : motion.div;
+
   return (
     <section id="compliance" className="relative py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:items-center">
-          <div className="relative order-2 lg:order-1">
+          <ScrollReveal className="relative order-2 lg:order-1">
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/[0.08] shadow-premium">
               <Image
                 src={SITE_IMAGES.compliance}
@@ -53,9 +59,9 @@ export function ComplianceSection() {
                 </p>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
 
-          <div className="order-1 lg:order-2">
+          <ScrollReveal className="order-1 lg:order-2" delay={0.1}>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-light">
               Regulatory Framework
             </p>
@@ -71,9 +77,18 @@ export function ComplianceSection() {
             </p>
 
             <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
-              {COMPLIANCE_PILLARS.map((pillar) => (
-                <div
+              {COMPLIANCE_PILLARS.map((pillar, index) => (
+                <PillarMotion
                   key={pillar.title}
+                  {...(prefersReducedMotion
+                    ? {}
+                    : {
+                        initial: { opacity: 0, y: 16 },
+                        whileInView: { opacity: 1, y: 0 },
+                        viewport: { once: true, amount: 0.3 },
+                        transition: { duration: 0.45, delay: index * 0.08 },
+                        whileHover: { y: -3 },
+                      })}
                   className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 transition-colors hover:border-emerald/20 hover:bg-emerald/5"
                 >
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald/10">
@@ -85,10 +100,10 @@ export function ComplianceSection() {
                   <p className="mt-2 text-xs leading-relaxed text-white/50">
                     {pillar.description}
                   </p>
-                </div>
+                </PillarMotion>
               ))}
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

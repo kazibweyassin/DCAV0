@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { motion, useReducedMotion } from "motion/react";
 import {
   Leaf,
   Gem,
@@ -31,13 +32,28 @@ const SECTOR_ICONS = {
 interface SectorCardProps {
   sector: Sector;
   onRequestBrief: (sectorId: Sector["id"]) => void;
+  index?: number;
 }
 
-export function SectorCard({ sector, onRequestBrief }: SectorCardProps) {
+export function SectorCard({ sector, onRequestBrief, index = 0 }: SectorCardProps) {
   const [isBriefOpen, setIsBriefOpen] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
   const Icon = SECTOR_ICONS[sector.icon];
 
+  const Wrapper = prefersReducedMotion ? "div" : motion.div;
+
   return (
+    <Wrapper
+      {...(prefersReducedMotion
+        ? {}
+        : {
+            initial: { opacity: 0, y: 32 },
+            whileInView: { opacity: 1, y: 0 },
+            viewport: { once: true, amount: 0.15 },
+            transition: { duration: 0.55, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] },
+            whileHover: { y: -6, transition: { duration: 0.3 } },
+          })}
+    >
     <Card
       className={cn(
         "group relative overflow-hidden bg-card-gradient transition-all duration-500",
@@ -144,7 +160,12 @@ export function SectorCard({ sector, onRequestBrief }: SectorCardProps) {
             </Button>
           </>
         ) : (
-          <div className="animate-fade-in space-y-5">
+          <motion.div
+            initial={prefersReducedMotion ? false : { opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="space-y-5"
+          >
             <div className="flex items-center justify-between">
               <p className="text-xs font-semibold uppercase tracking-wider text-champagne">
                 Investment Brief: Executive Summary
@@ -213,9 +234,10 @@ export function SectorCard({ sector, onRequestBrief }: SectorCardProps) {
             >
               Request Full Investment Brief
             </Button>
-          </div>
+          </motion.div>
         )}
       </CardContent>
     </Card>
+    </Wrapper>
   );
 }

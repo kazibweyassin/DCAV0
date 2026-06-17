@@ -2,6 +2,8 @@
 
 import { useMemo, useState, type ComponentType } from "react";
 import Image from "next/image";
+import { motion, useReducedMotion } from "motion/react";
+import { ScrollReveal } from "@/components/motion/scroll-reveal";
 import {
   Calculator,
   TrendingUp,
@@ -46,6 +48,8 @@ export function InvestmentCalculator({
   );
 
   const selectedSectorData = SECTORS.find((s) => s.id === selectedSector);
+  const prefersReducedMotion = useReducedMotion();
+  const projectionKey = `${selectedSector}-${selectedTier}`;
 
   return (
     <section id="calculator" className="relative overflow-hidden py-24 lg:py-32">
@@ -59,7 +63,7 @@ export function InvestmentCalculator({
       <div className="absolute inset-0 bg-gradient-to-b from-obsidian via-obsidian/95 to-obsidian" />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
+        <ScrollReveal className="mx-auto max-w-3xl text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-champagne">
             Investment Accelerator
           </p>
@@ -71,7 +75,7 @@ export function InvestmentCalculator({
             tax incentive exemptions based on your allocation tier and sector
             preference.
           </p>
-        </div>
+        </ScrollReveal>
 
         <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-5">
           <Card className="lg:col-span-2">
@@ -163,7 +167,13 @@ export function InvestmentCalculator({
             </CardHeader>
             <CardContent>
               {projection ? (
-                <div className="space-y-6">
+                <motion.div
+                  key={projectionKey}
+                  className="space-y-6"
+                  initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                >
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <ProjectionMetric
                       icon={TrendingUp}
@@ -231,7 +241,7 @@ export function InvestmentCalculator({
                     may vary. This does not constitute an offer or solicitation.
                     Qualified institutional investors only.
                   </p>
-                </div>
+                </motion.div>
               ) : (
                 <p className="text-sm text-white/50">
                   Select parameters to view projections.

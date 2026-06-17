@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { ScrollReveal } from "@/components/motion/scroll-reveal";
 import { SITE_IMAGES } from "@/lib/data/images";
 
 export function AboutSection() {
@@ -9,7 +12,7 @@ export function AboutSection() {
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <div className="relative">
+          <ScrollReveal className="relative">
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/[0.08] shadow-premium">
               <Image
                 src={SITE_IMAGES.about.primary}
@@ -31,9 +34,9 @@ export function AboutSection() {
                 />
               </div>
             </div>
-          </div>
+          </ScrollReveal>
 
-          <div>
+          <ScrollReveal delay={0.12}>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-champagne">
               About Diamond Capital Africa
             </p>
@@ -54,7 +57,7 @@ export function AboutSection() {
               vetted under OECD due diligence protocols, and backed by physical
               infrastructure with verifiable cash flows.
             </p>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>
