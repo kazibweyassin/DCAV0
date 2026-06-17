@@ -4,6 +4,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { HeroSection } from "@/components/layout/hero-section";
 import { SectorsDashboard } from "@/components/sectors/sectors-dashboard";
 import { InvestmentCalculator } from "@/components/calculator/investment-calculator";
+import { WhatWeDoSection } from "@/components/sections/what-we-do-section";
 import { ComplianceSection } from "@/components/sections/compliance-section";
 import { AboutSection } from "@/components/sections/about-section";
 import { Footer } from "@/components/layout/footer";
@@ -21,6 +22,7 @@ export function HomePageClient() {
           onRequestBrief={() => openBrief()}
           onApplyAllocation={openAllocation}
         />
+        <WhatWeDoSection />
         <SectorsDashboard onRequestBrief={(sectorId) => openBrief(sectorId)} />
         <InvestmentCalculator onApplyAllocation={openAllocation} />
         <ComplianceSection />

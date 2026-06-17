@@ -9,10 +9,10 @@ import { useConversion } from "@/components/providers/conversion-provider";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
+  { href: "/what-we-do", label: "What We Do" },
   { href: "/#sectors", label: "Sectors" },
   { href: "/#calculator", label: "Accelerator" },
   { href: "/investment-projects", label: "Investment Projects" },
-  { href: "/#compliance", label: "Compliance" },
   { href: "/#about", label: "About DCA" },
 ] as const;
 

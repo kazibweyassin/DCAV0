@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useConversion } from "@/components/providers/conversion-provider";
 
 const PLATFORM_LINKS = [
+  { label: "What We Do", href: "/what-we-do" },
   { label: "Sectors", href: "/#sectors" },
   { label: "Accelerator", href: "/#calculator" },
   { label: "Investment Projects", href: "/investment-projects" },
