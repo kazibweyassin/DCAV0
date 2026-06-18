@@ -52,7 +52,10 @@ export function InvestmentCalculator({
   const projectionKey = `${selectedSector}-${selectedTier}`;
 
   return (
-    <section id="calculator" className="relative overflow-hidden py-24 lg:py-32">
+    <section
+      id="calculator"
+      className="relative overflow-hidden section-surface-c py-24 lg:py-32"
+    >
       <Image
         src={SITE_IMAGES.calculator}
         alt={SITE_IMAGES.calculatorAlt}

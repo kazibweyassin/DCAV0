@@ -13,7 +13,7 @@ interface SectorsDashboardProps {
 
 export function SectorsDashboard({ onRequestBrief }: SectorsDashboardProps) {
   return (
-    <section id="sectors" className="relative py-24 lg:py-32">
+    <section id="sectors" className="relative section-surface-a py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <ScrollReveal className="mx-auto max-w-3xl text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-light">

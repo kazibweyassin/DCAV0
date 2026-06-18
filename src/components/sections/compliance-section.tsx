@@ -37,7 +37,7 @@ export function ComplianceSection() {
   const PillarMotion = prefersReducedMotion ? "div" : motion.div;
 
   return (
-    <section id="compliance" className="relative py-24 lg:py-32">
+    <section id="compliance" className="relative section-surface-b py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:items-center">
           <ScrollReveal className="relative order-2 lg:order-1">

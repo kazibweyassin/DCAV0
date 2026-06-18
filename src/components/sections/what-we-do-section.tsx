@@ -14,7 +14,7 @@ export function WhatWeDoSection() {
   return (
     <section
       id="what-we-do"
-      className="relative border-t border-white/[0.06] bg-obsidian-100/40 py-24 lg:py-32"
+      className="relative border-t border-white/[0.04] section-surface-b py-24 lg:py-32"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <ScrollReveal className="mx-auto max-w-3xl text-center">
@@ -33,7 +33,7 @@ export function WhatWeDoSection() {
           </p>
         </ScrollReveal>
 
-        <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-16 grid grid-cols-1 gap-x-10 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
           {DCA_SERVICES.map((service, index) => {
             const Icon = service.icon;
             return (
@@ -50,14 +50,13 @@ export function WhatWeDoSection() {
                         delay: index * 0.08,
                         ease: [0.22, 1, 0.36, 1],
                       },
-                      whileHover: { y: -4, transition: { duration: 0.25 } },
                     })}
-                className="group rounded-xl border border-white/[0.06] bg-card/60 p-6 backdrop-blur-sm transition-colors hover:border-emerald/25 hover:bg-emerald/5"
+                className="group"
               >
-                <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-emerald/20 bg-emerald/10">
+                <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-emerald/10">
                   <Icon className="h-5 w-5 text-emerald-light" strokeWidth={1.5} />
                 </div>
-                <h3 className="mt-4 font-display text-lg font-semibold text-white">
+                <h3 className="mt-5 font-display text-lg font-semibold text-white">
                   {service.title}
                 </h3>
                 <p className="mt-2 text-sm font-medium text-champagne/90">

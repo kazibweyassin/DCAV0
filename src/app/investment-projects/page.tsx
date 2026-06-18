@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { DocumentPageShell } from "@/components/layout/document-page-shell";
+import { DocumentPageHeader } from "@/components/layout/document-page-header";
 import { PdfViewer } from "@/components/documents/pdf-viewer";
 import { JsonLd } from "@/components/seo/json-ld";
 import {
@@ -47,7 +48,7 @@ export default function InvestmentProjectsPage() {
 
       <main
         id="main-content"
-        className="min-h-screen pt-28 pb-16 institutional-grid-light"
+        className="min-h-screen pt-28 pb-16 surface-reading"
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Link
@@ -58,21 +59,19 @@ export default function InvestmentProjectsPage() {
             Back to Gateway
           </Link>
 
-          <div className="mb-8 max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald">
-              Uganda Investment Authority
-            </p>
-            <h1 className="mt-3 font-display text-3xl font-bold text-foreground sm:text-4xl">
-              UIA Bankable Investment Projects
-            </h1>
-            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+          <DocumentPageHeader
+            eyebrow="Uganda Investment Authority"
+            title="UIA Bankable Investment Projects"
+            className="mb-10"
+          >
+            <p>
               Official UIA bankable projects catalogue for foreign institutional
               allocators. Review sovereign-vetted opportunities across
               Uganda&apos;s highest-yield sectors including agro-processing,
               mineral value-addition, and industrial logistics before requesting
               a confidential DCA investment brief.
             </p>
-            <p className="mt-2 text-sm text-champagne-dark">
+            <p className="text-sm text-champagne-dark">
               {UIA_BANKABLE_PROJECTS_META.subtitle} · Source:{" "}
               <a
                 href={UIA_BANKABLE_PROJECTS_META.sourceUrl}
@@ -83,7 +82,7 @@ export default function InvestmentProjectsPage() {
                 {UIA_BANKABLE_PROJECTS_META.source}
               </a>
             </p>
-          </div>
+          </DocumentPageHeader>
 
           <PdfViewer
             url={UIA_BANKABLE_PROJECTS_PDF}

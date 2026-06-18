@@ -8,7 +8,7 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      className="relative border-t border-white/[0.06] py-24 lg:py-32"
+      className="relative border-t border-white/[0.04] section-surface-a py-24 lg:py-32"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">

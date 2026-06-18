@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { DocumentPageShell } from "@/components/layout/document-page-shell";
+import { DocumentPageHeader } from "@/components/layout/document-page-header";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Button } from "@/components/ui/button";
 import { DCA_SERVICES, DCA_PROCESS } from "@/lib/data/services";
@@ -36,7 +37,7 @@ export default function WhatWeDoPage() {
 
       <main
         id="main-content"
-        className="min-h-screen pt-28 pb-16 institutional-grid-light"
+        className="min-h-screen pt-28 pb-16 surface-reading"
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Link
@@ -47,59 +48,56 @@ export default function WhatWeDoPage() {
             Back to Gateway
           </Link>
 
-          <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald">
-              Our Mandate
-            </p>
-            <h1 className="mt-3 font-display text-3xl font-bold text-foreground sm:text-5xl text-balance">
-              What Diamond Capital Africa Does
-            </h1>
-            <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
+          <DocumentPageHeader
+            eyebrow="Our Mandate"
+            title="What Diamond Capital Africa Does"
+            className="mb-16"
+          >
+            <p>
               DCA exists to solve one problem for foreign institutional
               investors: how to access Uganda&apos;s highest-yield hard-asset
               opportunities with sovereign-grade compliance, transparent due
               diligence, and structured repatriation. We are the gateway, not
               the gamble.
             </p>
-          </div>
+          </DocumentPageHeader>
 
-          <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2">
+          <div className="grid grid-cols-1 gap-x-12 gap-y-14 lg:grid-cols-2">
             {DCA_SERVICES.map((service) => {
               const Icon = service.icon;
               return (
-                <article
-                  key={service.id}
-                  className="rounded-xl border border-border bg-card p-8 shadow-premium-light"
-                >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-emerald/10">
+                <article key={service.id} className="flex gap-5">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-emerald/10">
                     <Icon className="h-6 w-6 text-emerald" />
                   </div>
-                  <h2 className="mt-5 font-display text-xl font-semibold text-foreground">
-                    {service.title}
-                  </h2>
-                  <p className="mt-2 text-sm font-medium text-champagne-dark">
-                    {service.summary}
-                  </p>
-                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                    {service.description}
-                  </p>
+                  <div>
+                    <h2 className="font-display text-xl font-semibold text-foreground">
+                      {service.title}
+                    </h2>
+                    <p className="mt-2 text-sm font-medium text-champagne-dark">
+                      {service.summary}
+                    </p>
+                    <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                      {service.description}
+                    </p>
+                  </div>
                 </article>
               );
             })}
           </div>
 
-          <div className="mt-20 border-t border-border pt-16">
+          <div className="mt-20 border-t border-border/70 pt-16">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-champagne-dark">
               How We Work
             </p>
             <h2 className="mt-3 font-display text-2xl font-bold text-foreground sm:text-3xl">
               From Allocator Brief to Capital Deployment
             </h2>
-            <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {DCA_PROCESS.map((phase) => (
                 <div
                   key={phase.step}
-                  className="rounded-xl border border-border bg-secondary/60 p-6"
+                  className="border-l border-emerald/25 pl-5"
                 >
                   <p className="font-display text-3xl font-bold text-emerald/30">
                     {phase.step}

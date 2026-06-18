@@ -7,7 +7,7 @@ interface DocumentPageShellProps {
 
 export function DocumentPageShell({ children }: DocumentPageShellProps) {
   return (
-    <div className="theme-document min-h-screen bg-background text-foreground">
+    <div className="theme-document min-h-screen text-foreground">
       <Navbar variant="light" />
       {children}
       <Footer variant="light" />

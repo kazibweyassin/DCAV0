@@ -52,7 +52,7 @@ export function HeroSection({
         sizes="100vw"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/92 to-obsidian/70" />
-      <div className="absolute inset-0 bg-hero-gradient institutional-grid opacity-60" />
+      <div className="absolute inset-0 bg-hero-gradient opacity-80" />
 
       <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 pb-24 pt-32 lg:px-8">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
