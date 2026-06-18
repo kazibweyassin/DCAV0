@@ -74,6 +74,8 @@ const config: Config = {
       boxShadow: {
         premium:
           "0 0 0 1px rgba(201, 169, 98, 0.12), 0 8px 32px rgba(0, 0, 0, 0.48)",
+        "premium-light":
+          "0 0 0 1px rgba(4, 120, 87, 0.08), 0 4px 24px rgba(0, 0, 0, 0.06)",
         glow: "0 0 40px rgba(4, 120, 87, 0.15)",
         "glow-gold": "0 0 30px rgba(201, 169, 98, 0.12)",
       },

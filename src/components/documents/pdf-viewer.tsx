@@ -3,27 +3,54 @@
 import { useState } from "react";
 import { ExternalLink, Download, FileText, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
+type PdfViewerTheme = "dark" | "light";
 
 interface PdfViewerProps {
   url: string;
   title: string;
   externalUrl?: string;
+  theme?: PdfViewerTheme;
 }
 
-export function PdfViewer({ url, title, externalUrl }: PdfViewerProps) {
+export function PdfViewer({
+  url,
+  title,
+  externalUrl,
+  theme = "dark",
+}: PdfViewerProps) {
   const [isLoading, setIsLoading] = useState(true);
   const openUrl = externalUrl ?? url;
+  const isLight = theme === "light";
 
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald/10">
-            <FileText className="h-5 w-5 text-emerald-light" />
+            <FileText
+              className={cn(
+                "h-5 w-5",
+                isLight ? "text-emerald" : "text-emerald-light"
+              )}
+            />
           </div>
           <div>
-            <p className="text-sm font-medium text-white">{title}</p>
-            <p className="text-xs text-white/50">
+            <p
+              className={cn(
+                "text-sm font-medium",
+                isLight ? "text-foreground" : "text-white"
+              )}
+            >
+              {title}
+            </p>
+            <p
+              className={cn(
+                "text-xs",
+                isLight ? "text-muted-foreground" : "text-white/50"
+              )}
+            >
               View the official document below or open it in a new tab
             </p>
           </div>
@@ -45,11 +72,35 @@ export function PdfViewer({ url, title, externalUrl }: PdfViewerProps) {
         </div>
       </div>
 
-      <div className="relative overflow-hidden rounded-xl border border-white/[0.08] bg-obsidian-100 shadow-premium">
+      <div
+        className={cn(
+          "relative overflow-hidden rounded-xl border",
+          isLight
+            ? "border-border bg-card shadow-premium-light"
+            : "border-white/[0.08] bg-obsidian-100 shadow-premium"
+        )}
+      >
         {isLoading && (
-          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 bg-obsidian-100">
-            <Loader2 className="h-8 w-8 animate-spin text-emerald-light" />
-            <p className="text-sm text-white/50">Loading document...</p>
+          <div
+            className={cn(
+              "absolute inset-0 z-10 flex flex-col items-center justify-center gap-3",
+              isLight ? "bg-secondary" : "bg-obsidian-100"
+            )}
+          >
+            <Loader2
+              className={cn(
+                "h-8 w-8 animate-spin",
+                isLight ? "text-emerald" : "text-emerald-light"
+              )}
+            />
+            <p
+              className={cn(
+                "text-sm",
+                isLight ? "text-muted-foreground" : "text-white/50"
+              )}
+            >
+              Loading document...
+            </p>
           </div>
         )}
         <iframe
@@ -60,7 +111,12 @@ export function PdfViewer({ url, title, externalUrl }: PdfViewerProps) {
         />
       </div>
 
-      <p className="text-center text-xs text-white/40">
+      <p
+        className={cn(
+          "text-center text-xs",
+          isLight ? "text-muted-foreground" : "text-white/40"
+        )}
+      >
         On mobile, if the document does not load, use &quot;Open in New Tab&quot;
         above.
       </p>

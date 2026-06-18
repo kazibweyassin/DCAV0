@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
+import { DocumentPageShell } from "@/components/layout/document-page-shell";
 import { PdfViewer } from "@/components/documents/pdf-viewer";
 import { JsonLd } from "@/components/seo/json-ld";
 import {
@@ -35,7 +34,7 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default function InvestmentProjectsPage() {
   return (
-    <>
+    <DocumentPageShell>
       <JsonLd
         data={[
           investmentProjectsWebPageSchema(),
@@ -46,33 +45,34 @@ export default function InvestmentProjectsPage() {
         ]}
       />
 
-      <Navbar />
-
-      <main id="main-content" className="min-h-screen bg-obsidian pt-28 pb-16">
+      <main
+        id="main-content"
+        className="min-h-screen pt-28 pb-16 institutional-grid-light"
+      >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Link
             href="/"
-            className="mb-8 inline-flex items-center gap-2 text-sm text-white/50 transition-colors hover:text-champagne"
+            className="mb-8 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-emerald"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Gateway
           </Link>
 
           <div className="mb-8 max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-light">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald">
               Uganda Investment Authority
             </p>
-            <h1 className="mt-3 font-display text-3xl font-bold text-white sm:text-4xl">
+            <h1 className="mt-3 font-display text-3xl font-bold text-foreground sm:text-4xl">
               UIA Bankable Investment Projects
             </h1>
-            <p className="mt-3 text-base leading-relaxed text-white/50">
+            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
               Official UIA bankable projects catalogue for foreign institutional
               allocators. Review sovereign-vetted opportunities across
               Uganda&apos;s highest-yield sectors including agro-processing,
               mineral value-addition, and industrial logistics before requesting
               a confidential DCA investment brief.
             </p>
-            <p className="mt-2 text-sm text-champagne/80">
+            <p className="mt-2 text-sm text-champagne-dark">
               {UIA_BANKABLE_PROJECTS_META.subtitle} · Source:{" "}
               <a
                 href={UIA_BANKABLE_PROJECTS_META.sourceUrl}
@@ -89,11 +89,10 @@ export default function InvestmentProjectsPage() {
             url={UIA_BANKABLE_PROJECTS_PDF}
             externalUrl={UIA_BANKABLE_PROJECTS_SOURCE_URL}
             title={UIA_BANKABLE_PROJECTS_META.title}
+            theme="light"
           />
         </div>
       </main>
-
-      <Footer />
-    </>
+    </DocumentPageShell>
   );
 }

@@ -16,10 +16,17 @@ const NAV_LINKS = [
   { href: "/#about", label: "About DCA" },
 ] as const;
 
-export function Navbar() {
+type NavbarVariant = "dark" | "light";
+
+interface NavbarProps {
+  variant?: NavbarVariant;
+}
+
+export function Navbar({ variant = "dark" }: NavbarProps) {
   const { openAllocation } = useConversion();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const isLight = variant === "light";
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -27,11 +34,25 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const linkClass = isLight
+    ? "text-sm text-muted-foreground transition-colors hover:text-emerald"
+    : "text-sm text-white/70 transition-colors hover:text-champagne";
+
+  const menuButtonClass = isLight
+    ? "inline-flex items-center justify-center rounded-md p-2 text-foreground lg:hidden"
+    : "inline-flex items-center justify-center rounded-md p-2 text-white lg:hidden";
+
   return (
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled ? "glass-nav shadow-lg" : "bg-transparent"
+        isLight
+          ? isScrolled
+            ? "glass-nav-light"
+            : "border-b border-border/60 bg-background/80 backdrop-blur-md"
+          : isScrolled
+            ? "glass-nav shadow-lg"
+            : "bg-transparent"
       )}
     >
       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
@@ -39,11 +60,7 @@ export function Navbar() {
 
         <div className="hidden items-center gap-8 lg:flex">
           {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm text-white/70 transition-colors hover:text-champagne"
-            >
+            <Link key={link.href} href={link.href} className={linkClass}>
               {link.label}
             </Link>
           ))}
@@ -62,7 +79,7 @@ export function Navbar() {
 
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded-md p-2 text-white lg:hidden"
+            className={menuButtonClass}
             onClick={() => setIsMobileOpen(!isMobileOpen)}
             aria-label="Toggle navigation menu"
             aria-expanded={isMobileOpen}
@@ -80,14 +97,17 @@ export function Navbar() {
       {isMobileOpen && (
         <div
           id="mobile-nav-menu"
-          className="glass-nav border-t border-white/[0.06] px-6 py-4 lg:hidden"
+          className={cn(
+            "border-t px-6 py-4 lg:hidden",
+            isLight ? "glass-nav-light" : "glass-nav border-white/[0.06]"
+          )}
         >
           <div className="flex flex-col gap-4">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm text-white/70 transition-colors hover:text-champagne"
+                className={linkClass}
                 onClick={() => setIsMobileOpen(false)}
               >
                 {link.label}

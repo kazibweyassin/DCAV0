@@ -24,6 +24,25 @@
     --radius: 0.5rem;
   }
 
+  .theme-document {
+    --background: 40 9% 98%;
+    --foreground: 240 6% 12%;
+    --card: 40 6% 100%;
+    --card-foreground: 240 6% 12%;
+    --primary: 160 94% 24%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 40 6% 94%;
+    --secondary-foreground: 240 6% 12%;
+    --muted: 40 5% 94%;
+    --muted-foreground: 240 4% 42%;
+    --accent: 43 42% 48%;
+    --accent-foreground: 40 9% 98%;
+    --border: 40 6% 88%;
+    --input: 40 6% 88%;
+    --ring: 160 94% 24%;
+    color-scheme: light;
+  }
+
   * {
     @apply border-border;
   }
@@ -62,6 +81,10 @@
     @apply bg-obsidian/70 backdrop-blur-xl border-b border-white/[0.06];
   }
 
+  .glass-nav-light {
+    @apply bg-background/90 backdrop-blur-xl border-b border-border shadow-sm;
+  }
+
   .premium-border {
     @apply border border-champagne/20;
   }
@@ -70,6 +93,13 @@
     background-image:
       linear-gradient(rgba(201, 169, 98, 0.03) 1px, transparent 1px),
       linear-gradient(90deg, rgba(201, 169, 98, 0.03) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  .institutional-grid-light {
+    background-image:
+      linear-gradient(rgba(4, 120, 87, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(4, 120, 87, 0.04) 1px, transparent 1px);
     background-size: 64px 64px;
   }
 }
